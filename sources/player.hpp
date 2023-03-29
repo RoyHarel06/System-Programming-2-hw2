@@ -22,5 +22,8 @@ namespace ariel
 
             int stacksize();
             int cardesTaken();
+
+            Card playCardFromHand();
+            void addCardToHand(Card card);
     };
 }

@@ -5,10 +5,17 @@
 namespace ariel
 {
     Game::Game(Player player1, Player player2): player1(player1), player2(player2) {
-        /*if (player1.getName().empty())
-            throw std::invalid_argument("P1 has no name.");
-        else if (player2.getName().empty())
-            throw std::invalid_argument("P2 has no name.");*/
+        if (player1.getName().empty())
+            throw std::invalid_argument("Player 1 has no name.");
+        if (player2.getName().empty())
+            throw std::invalid_argument("Player 2 has no name.");
+
+        if (player1.stacksize() != 0)
+            throw std::invalid_argument("Player 1 has cards.");
+        if (player2.stacksize() != 0)
+            throw std::invalid_argument("Player 2 has cards.");
+
+        
 
         this->turn = 0;
         this->draw_counter = 0;
@@ -39,10 +46,10 @@ namespace ariel
             cout << "The game hasn't started yet.\n";
         else if (game_ended == false)
             cout << "The game hasn't ended yet!\n";
-        else if (player1.stacksize() == 0)
-            cout << player2.getName() << " won!\n";
-        else
+        else if (player1.stacksize() > player2.stacksize())
             cout << player1.getName() << " won!\n";
+        else
+            cout << player2.getName() << " won!\n";
     }
 
     /*

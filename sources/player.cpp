@@ -28,4 +28,14 @@ namespace ariel
     int Player::cardesTaken() {
         return number_of_cards_won;
     }
+
+    Card Player::playCardFromHand() {
+        Card ret = hand.front();
+        hand.pop();
+        return ret;
+    } 
+
+    void Player::addCardToHand(Card card) {
+        hand.push(card);
+    }
 }
