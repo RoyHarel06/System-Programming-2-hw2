@@ -33,19 +33,25 @@ namespace ariel
      * plays the next turn in the game and logs the results.
      */
     void Game::playTurn() {
+        turn++;
+
         if (game_ended == true)
             throw std::logic_error("The game ended.");
-            
+
         // TODO: in part b!
+
+        // temp for part a:
+        if (turn == 26)
+            game_ended = true;
     }
 
     /*
      * playes the game untill the end.
      */
     void Game::playAll() {
-        //while (game_ended == false) {
-        //    playTurn();
-        //}
+        while (game_ended == false) {
+            playTurn();
+        }
     }
 
     std::string Game::getWinner() {
