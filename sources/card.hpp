@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+using namespace std;
 
 namespace ariel
 {
@@ -8,12 +9,12 @@ namespace ariel
     {
         private:
             int value;
-            char suit;
+            string suit;
             
         public:
-            Card(int value, char suit);
+            Card(int value, string suit);
             int getValue();
-            std::string getSuitName();
+            std::string getSuit();
 
             // Operators are used to compare two card's values!
             bool operator==(const Card& other) const;

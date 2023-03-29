@@ -10,9 +10,12 @@ namespace ariel
         if (player2.getName().empty())
             throw std::invalid_argument("Player 2 has no name.");
 
-        if (player1.stacksize() != 0)
+        if (player1.getName() == player2.getName())
+            throw std::invalid_argument("Same player.");
+
+        if (player1.stacksize() != 0 || player1.cardesTaken() != 0)
             throw std::invalid_argument("Player 1 has cards.");
-        if (player2.stacksize() != 0)
+        if (player2.stacksize() != 0 || player1.cardesTaken() != 0)
             throw std::invalid_argument("Player 2 has cards.");
 
         
@@ -20,6 +23,10 @@ namespace ariel
         this->turn = 0;
         this->draw_counter = 0;
         this->game_ended = false;
+    }
+
+    int Game::getNumberOfTurns() {
+        return turn;
     }
 
     /*

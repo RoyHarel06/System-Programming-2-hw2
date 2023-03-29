@@ -3,26 +3,21 @@
 
 namespace ariel
 {
-    Card::Card(int value, char suit) {
+    Card::Card(int value, string suit) {
+        if (value < 1 || value > 13)
+            throw std::invalid_argument("Value is out of range.");
+            
+        if (suit != "Hearts" && suit != "Spades" && suit != "Diamonds" && suit != "Clubs")
+            throw std::invalid_argument("Suit needs to be one of the following: Clubs, Spades, Diamonds, Hearts.");
+
         this->value = value;
         this->suit = suit;
     }
     int Card::getValue() {
         return this->value;
     }
-    std::string Card::getSuitName() {
-        switch(suit) {
-            case 'h':
-                return "Hearts";
-            case 's':
-                return "Spades";
-            case 'd':
-                return "Diamonds";
-            case 'c':
-                return "Clubs";
-            default:
-                throw std::logic_error("Invalid suit.");
-        }
+    string Card::getSuit() {
+        return suit;
     }
 
     bool Card::operator==(const Card& other) const {

@@ -18,6 +18,7 @@ namespace ariel
         public:
             Game(Player player1, Player player2);
             
+            int getNumberOfTurns();
             void playTurn();
             void printLastTurn();
             void playAll();
