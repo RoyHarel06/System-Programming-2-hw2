@@ -19,7 +19,7 @@ namespace ariel
      * plays the next turn in the game and logs the results.
      */
     void Game::playTurn() {
-
+        // TODO: in part b!
     }
 
     /*

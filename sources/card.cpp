@@ -1,5 +1,3 @@
-#pragma once
-
 #include "card.hpp"
 #include <stdexcept>
 
