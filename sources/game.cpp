@@ -5,10 +5,10 @@
 namespace ariel
 {
     Game::Game(Player p1, Player p2): player1(p1), player2(p2) {
-        if (player1.getName().empty())
+        /*if (player1.getName().empty())
             throw std::invalid_argument("P1 has no name.");
         else if (player2.getName().empty())
-            throw std::invalid_argument("P2 has no name.");
+            throw std::invalid_argument("P2 has no name.");*/
 
         this->turn = 0;
         this->draw_counter = 0;
@@ -26,19 +26,20 @@ namespace ariel
      * playes the game untill the end.
      */
     void Game::playAll() {
-        while (game_ended == false) {
-            playTurn();
-        }
+        //while (game_ended == false) {
+        //    playTurn();
+        //}
     }
 
     /*
      * prints the name of the winning player.
      */
     void Game::printWiner() {
-        if (game_ended == false)
+        if (turn == 0)
+            cout << "The game hasn't started yet.\n";
+        else if (game_ended == false)
             cout << "The game hasn't ended yet!\n";
-        
-        if (player1.stacksize() == 0)
+        else if (player1.stacksize() == 0)
             cout << player2.getName() << " won!\n";
         else
             cout << player1.getName() << " won!\n";
@@ -51,18 +52,18 @@ namespace ariel
      *    Draw. Alice played Jack of Clubs Bob played King of Diamonds. Bob wins.
      */
     void Game::printLastTurn() {
-        cout << log.back() << "\n";
+        //cout << log.back() << "\n";
     }
 
     /*
      * prints all the turns played one line per turn (same format as game.printLastTurn()).
      */
     void Game::printLog() {
-        cout << "Game log:\n";
+        /*cout << "Game log:\n";
         while (!log.empty()) {
             cout << log.front() << "\n";
             log.pop();
-        }
+        }*/
     }
 
     /*
@@ -70,15 +71,19 @@ namespace ariel
      * Also print the draw rate and amount of draws that happand. (draw within a draw counts as 2 draws.)
      */
     void Game::printStats() {
-        cout << player1.getName() << "'s stats:\n";
-        cout << "Win rate: " << (player1.cardesTaken() / 26) * 100 << "%\n";
-        cout << "Cards won: " << player1.cardesTaken() << "\n\n";
+        if (turn == 0)
+            cout << "The game hasn't started yet.\n";
+        else {
+            cout << player1.getName() << "'s stats:\n";
+            cout << "Win rate: " << (player1.cardesTaken() / 26) * 100 << "%\n";
+            cout << "Cards won: " << player1.cardesTaken() << "\n\n";
 
-        cout << player2.getName() << "'s stats:\n";
-        cout << "Win rate: " << (player2.cardesTaken() / 26) * 100 << "%\n";
-        cout << "Cards won: " << player2.cardesTaken() << "\n\n";
-
-        cout << "Draw rate: " << (draw_counter / turn) * 100 << "%\n";
-        cout << "Draw counter: " << draw_counter << "\n";
+            cout << player2.getName() << "'s stats:\n";
+            cout << "Win rate: " << (player2.cardesTaken() / 26) * 100 << "%\n";
+            cout << "Cards won: " << player2.cardesTaken() << "\n\n";
+        
+            cout << "Draw rate: " << ((double)draw_counter / turn) * 100 << "%\n";
+            cout << "Draw counter: " << draw_counter << "\n";
+        }
     }
 }
