@@ -38,7 +38,7 @@ namespace ariel
         if (game_ended == false)
             cout << "The game hasn't ended yet!\n";
         
-        if (player1.hasCardsInHand())
+        if (player1.stacksize() == 0)
             cout << player2.getName() << " won!\n";
         else
             cout << player1.getName() << " won!\n";

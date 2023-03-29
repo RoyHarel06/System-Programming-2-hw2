@@ -13,7 +13,7 @@ namespace ariel
         private:
             string name;
             queue<Card> hand;
-            queue<Card> cards_won;
+            int number_of_cards_won;
 
         public:
             Player(string name);
@@ -22,9 +22,5 @@ namespace ariel
 
             int stacksize();
             int cardesTaken();
-
-            void addCardToHand(const Card& card);
-            const Card& playTopCardFromHand();
-            bool hasCardsInHand();
     };
 }
