@@ -121,3 +121,77 @@ TEST_CASE("Game End - All Cards Were Used") {
     CHECK(player1.stacksize() == 0);
     CHECK(player2.stacksize() == 0);
 }
+
+TEST_CASE("Game End - Correct Winner") {
+    Player player1("Roy");
+    Player player2("Dan");
+
+    Game game(player1, player2);
+
+    game.playAll();
+
+    if (game.getWinner() == player1.getName())
+        CHECK(player1.cardesTaken() > player2.cardesTaken());
+    else if (game.getWinner() == player2.getName())
+        CHECK(player2.cardesTaken() > player1.cardesTaken());
+    else
+        CHECK(player2.cardesTaken() == player1.cardesTaken());
+}
+
+TEST_CASE("Print Winner - Before Game Start") {
+    Player player1("Roy");
+    Player player2("Dan");
+
+    Game game(player1, player2);
+
+    CHECK_THROWS(game.printWiner());
+}
+
+TEST_CASE("Print Winner - Before Game End") {
+    Player player1("Roy");
+    Player player2("Dan");
+
+    Game game(player1, player2);
+
+    game.playTurn();
+
+    CHECK_THROWS(game.printWiner());
+}
+
+TEST_CASE("Print Last Turn - Before Game Start") {
+    Player player1("Roy");
+    Player player2("Dan");
+
+    Game game(player1, player2);
+
+    CHECK_THROWS(game.printLastTurn());
+}
+
+TEST_CASE("Print Log - Before Game Start") {
+    Player player1("Roy");
+    Player player2("Dan");
+
+    Game game(player1, player2);
+
+    CHECK_THROWS(game.printLog());
+}
+
+TEST_CASE("Print Stats - Before Game Start") {
+    Player player1("Roy");
+    Player player2("Dan");
+
+    Game game(player1, player2);
+
+    CHECK_THROWS(game.printStats());
+}
+
+TEST_CASE("Play Turn - Game Ended") {
+    Player player1("Roy");
+    Player player2("Dan");
+
+    Game game(player1, player2);
+
+    game.playAll();
+    
+    CHECK_THROWS(game.playTurn());
+}

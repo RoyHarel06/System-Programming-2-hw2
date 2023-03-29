@@ -17,6 +17,8 @@ namespace ariel
             
         public:
             Game(Player player1, Player player2);
+
+            std::string getWinner();
             
             int getNumberOfTurns();
             void playTurn();

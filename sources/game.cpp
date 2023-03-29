@@ -33,6 +33,9 @@ namespace ariel
      * plays the next turn in the game and logs the results.
      */
     void Game::playTurn() {
+        if (game_ended == true)
+            throw std::logic_error("The game ended.");
+            
         // TODO: in part b!
     }
 
@@ -45,18 +48,25 @@ namespace ariel
         //}
     }
 
+    std::string Game::getWinner() {
+        if (turn == 0)
+            throw std::logic_error("The game hasn't started yet.");
+        else if (game_ended == false)
+            throw std::logic_error("The game hasn't ended yet.");
+        
+        else if (player1.stacksize() > player2.stacksize())
+            return player1.getName();
+        else if (player1.stacksize() < player2.stacksize())
+            return player2.getName();
+        else
+            return player1.getName() + " and " + player2.getName();
+    }
+
     /*
      * prints the name of the winning player.
      */
     void Game::printWiner() {
-        if (turn == 0)
-            cout << "The game hasn't started yet.\n";
-        else if (game_ended == false)
-            cout << "The game hasn't ended yet!\n";
-        else if (player1.stacksize() > player2.stacksize())
-            cout << player1.getName() << " won!\n";
-        else
-            cout << player2.getName() << " won!\n";
+        cout << getWinner() << " won!\n";
     }
 
     /*
@@ -66,6 +76,8 @@ namespace ariel
      *    Draw. Alice played Jack of Clubs Bob played King of Diamonds. Bob wins.
      */
     void Game::printLastTurn() {
+        if (turn == 0)
+            throw std::logic_error("The game hasn't started yet.");
         //cout << log.back() << "\n";
     }
 
@@ -73,6 +85,8 @@ namespace ariel
      * prints all the turns played one line per turn (same format as game.printLastTurn()).
      */
     void Game::printLog() {
+        if (turn == 0)
+            throw std::logic_error("The game hasn't started yet.");
         /*cout << "Game log:\n";
         while (!log.empty()) {
             cout << log.front() << "\n";
@@ -86,7 +100,7 @@ namespace ariel
      */
     void Game::printStats() {
         if (turn == 0)
-            cout << "The game hasn't started yet.\n";
+            throw std::logic_error("The game hasn't started yet.");
         else {
             cout << player1.getName() << "'s stats:\n";
             cout << "Win rate: " << (player1.cardesTaken() / 26) * 100 << "%\n";
