@@ -4,7 +4,7 @@
 
 namespace ariel
 {
-    Game::Game(Player p1, Player p2): player1(p1), player2(p2) {
+    Game::Game(Player player1, Player player2): player1(player1), player2(player2) {
         /*if (player1.getName().empty())
             throw std::invalid_argument("P1 has no name.");
         else if (player2.getName().empty())
